@@ -1,0 +1,14 @@
+gcc -c aoprand.c base.c
+
+ar -rc libtest.a aoprand.o base.o
+
+gcc test.c -o test -L /home/rlk/cy_workplace/test/static -ltest
+
+gcc test.c -o RemoteTestStatic -L /home/rlk/cy_workplace/test/static -ltest -I /home/rlk/cy_workplace/test/static
+
+
+gcc -fpic -shared -o libtest.so mylib.c
+
+gcc test.c -o test ./libtest.so
+
+gcc testDynamic.c -o testDynamic ../dynamiclib/libtest.so
